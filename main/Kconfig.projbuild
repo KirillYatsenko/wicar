@@ -1,0 +1,9 @@
+menu "WIFI AP"
+
+config SSID
+    string "Wi-Fi name (SSID)"
+    
+config PASSWORD
+    string "Wi-Fi password"
+    
+endmenu

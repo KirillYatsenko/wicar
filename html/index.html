@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="main-body">
+        <img id="camera-img">
+        <br>
+
+        <div class="arrows">
+            <button class="button up-button" type="button" onmousedown="straight()" onmouseup="stop()" ontouchstart="straight()" ontouchend="stop()">
+                <i class="arrow up"></i></button>
+            <br>
+            <button class="button" type="button" onmousedown="left()" onmouseup="stop()" ontouchstart="left()" ontouchend="stop()"> <i
+                    class="arrow left"></i></button>
+
+            <button class="button" type="button" onmousedown="stop()" onmouseup="stop()" ontouchstart="stop()" ontouchend="stop()"></button>
+
+            <button class="button" type="button" onmousedown="right()" onmouseup="stop()" ontouchstart="right()" ontouchend="stop()"><i
+                    class="arrow right"></i></button>
+            <br>
+            <button class="button" type="button" onmousedown="back()" onmouseup="stop()" ontouchstart="back()" ontouchend="stop()"><i
+                class="arrow down"></i></button>
+            <br>
+            <button class="button led" type="button" onclick="ledToggle()">LED</button>
+        </div>
+    </section>
+
+    <script src="/scripts.js "></script>
+</body>
+
+</html>
