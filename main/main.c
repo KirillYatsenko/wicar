@@ -31,12 +31,7 @@ void OnConnected(void *para)
     }
     else
     {
-      ESP_LOGE(TAG, "Failed to connect. Retry in");
-      for (int i = 0; i < 5; i++)
-      {
-        ESP_LOGE(TAG, "...%d", i);
-        vTaskDelay(1000 / portTICK_RATE_MS);
-      }
+      ESP_LOGE(TAG, "Restarting esp");
       esp_restart();
     }
   }
@@ -47,5 +42,5 @@ void app_main()
   esp_log_level_set(TAG, ESP_LOG_DEBUG);
   connectionSemaphore = xSemaphoreCreateBinary();
   wifiInit();
-  xTaskCreate(&OnConnected, "handel conns", 1024 * 3, NULL, 5, NULL);
+  xTaskCreate(&OnConnected, "handle connections", 1024 * 3, NULL, 5, NULL);
 }

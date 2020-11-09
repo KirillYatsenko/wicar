@@ -24,28 +24,10 @@ void driverStop(void)
     gpio_set_level(RIGHT_SIDE_MOTORS_2_PIN, 0);
 }
 
-void driverTest(void)
-{
-    ESP_LOGI(TAG, "driverTest start");
-    initialize();
-
-    gpio_set_level(LEFT_SIDE_MOTORS_1_PIN, 1);
-    gpio_set_level(LEFT_SIDE_MOTORS_2_PIN, 0);
-
-    gpio_set_level(RIGHT_SIDE_MOTORS_1_PIN, 1);
-    gpio_set_level(RIGHT_SIDE_MOTORS_2_PIN, 0);
-
-    vTaskDelay(2000 / portTICK_PERIOD_MS);
-
-    driverStop();
-    ESP_LOGI(TAG, "driverTest end");
-}
-
-uint32_t driverGoStraight(void)
+void driverGoStraight(void)
 {
     ESP_LOGI(TAG, "driverGoStraight start");
     initialize();
-    uint32_t start = esp_log_timestamp();
 
     gpio_set_level(LEFT_SIDE_MOTORS_1_PIN, 1);
     gpio_set_level(LEFT_SIDE_MOTORS_2_PIN, 0);
@@ -53,34 +35,21 @@ uint32_t driverGoStraight(void)
     gpio_set_level(RIGHT_SIDE_MOTORS_1_PIN, 1);
     gpio_set_level(RIGHT_SIDE_MOTORS_2_PIN, 0);
 
-    // vTaskDelay(100 / portTICK_PERIOD_MS);
-
-    // driverStop();
-    uint32_t end = esp_log_timestamp();
     ESP_LOGI(TAG, "driverGoStraight end");
-
-    return end - start;
 }
 
-uint32_t driverGoBack(void)
+void driverGoBack(void)
 {
     ESP_LOGI(TAG, "driverGoBack start");
     initialize();
 
-    uint32_t start = esp_log_timestamp();
     gpio_set_level(LEFT_SIDE_MOTORS_1_PIN, 0);
     gpio_set_level(LEFT_SIDE_MOTORS_2_PIN, 1);
 
     gpio_set_level(RIGHT_SIDE_MOTORS_1_PIN, 0);
     gpio_set_level(RIGHT_SIDE_MOTORS_2_PIN, 1);
 
-    // vTaskDelay(100 / portTICK_PERIOD_MS);
-
-    // driverStop();
-    uint32_t end = esp_log_timestamp();
     ESP_LOGI(TAG, "driverGoBack end");
-
-    return end - start;
 }
 
 void driverTurnLeft(void)
@@ -94,15 +63,13 @@ void driverTurnLeft(void)
     gpio_set_level(RIGHT_SIDE_MOTORS_1_PIN, 0);
     gpio_set_level(RIGHT_SIDE_MOTORS_2_PIN, 1);
 
-    // vTaskDelay(100 / portTICK_PERIOD_MS);
-
-    // driverStop();
     ESP_LOGI(TAG, "driverTurnLeft end");
 }
 
 void driverTurnRight(void)
 {
     ESP_LOGI(TAG, "driverTurnRight start");
+    initialize();
 
     gpio_set_level(LEFT_SIDE_MOTORS_1_PIN, 0);
     gpio_set_level(LEFT_SIDE_MOTORS_2_PIN, 1);
@@ -110,9 +77,6 @@ void driverTurnRight(void)
     gpio_set_level(RIGHT_SIDE_MOTORS_1_PIN, 1);
     gpio_set_level(RIGHT_SIDE_MOTORS_2_PIN, 0);
 
-    // vTaskDelay(100 / portTICK_PERIOD_MS);
-
-    // driverStop();
     ESP_LOGI(TAG, "driverTurnRight end");
 }
 
