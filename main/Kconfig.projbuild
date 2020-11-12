@@ -2,8 +2,10 @@ menu "WIFI AP"
 
 config SSID
     string "Wi-Fi name (SSID)"
+    default "wicar"
     
 config PASSWORD
     string "Wi-Fi password"
-    
+    default "12345678"
+
 endmenu

@@ -45,7 +45,15 @@ body {
 }
 
 .arrows {
-    margin-top: 25%;
+    margin-top: 17%;
+}
+
+.stop {
+    display: inline-block;
+}
+
+.stop-button {
+    margin: 5px;
 }
 
 #camera-img {

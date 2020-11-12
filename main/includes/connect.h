@@ -1,6 +1,8 @@
 #ifndef _CONNECT_H_
 #define _CONNECT_H_
 
-void wifiInit();
+#include "esp_err.h"
+
+esp_err_t wifiInit();
 
 #endif

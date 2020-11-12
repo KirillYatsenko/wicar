@@ -50,15 +50,9 @@ static esp_err_t on_url_hit(httpd_req_t *req)
     return ESP_OK;
 }
 
-static esp_err_t on_get_health(httpd_req_t *req)
-{
-    char *message = "{\"health\": \"ok\"}";
-    httpd_resp_send(req, message, strlen(message));
-    return ESP_OK;
-}
-
 static esp_err_t on_straight(httpd_req_t *req)
 {
+    driverGoStraight();
     char *message = "{\"straight\": \"ok\"}";
     httpd_resp_send(req, message, strlen(message));
     return ESP_OK;
@@ -66,6 +60,7 @@ static esp_err_t on_straight(httpd_req_t *req)
 
 static esp_err_t on_back(httpd_req_t *req)
 {
+    driverGoBack();
     char *message = "{\"back\": \"ok\"}";
     httpd_resp_send(req, message, strlen(message));
     return ESP_OK;
@@ -103,11 +98,10 @@ static esp_err_t on_led(httpd_req_t *req)
     return ESP_OK;
 }
 
-void serverRegisterEndpoints(void)
+void serverStart(void)
 {
     httpd_handle_t server = NULL;
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-    config.max_uri_handlers = 10;
     config.uri_match_fn = httpd_uri_match_wildcard;
 
     ESP_LOGI(TAG, "starting server");
@@ -127,11 +121,6 @@ void serverRegisterEndpoints(void)
     {
         ESP_LOGE(TAG, "failed to start http video server");
     }
-
-    httpd_uri_t health_end_point_config = {
-        .uri = "/health",
-        .method = HTTP_GET,
-        .handler = on_get_health};
 
     httpd_uri_t straight_end_point_config = {
         .uri = "/straight",
@@ -173,7 +162,6 @@ void serverRegisterEndpoints(void)
         .method = HTTP_GET,
         .handler = on_url_hit};
 
-    httpd_register_uri_handler(server, &health_end_point_config);
     httpd_register_uri_handler(server, &straight_end_point_config);
     httpd_register_uri_handler(server, &back_end_point_config);
     httpd_register_uri_handler(server, &left_end_point_config);
